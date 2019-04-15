@@ -36,7 +36,7 @@ import io.springfox.spring.boot.model.UiConfig;
 @ConfigurationProperties(Swagger2WebFluxProperties.PREFIX)
 public class Swagger2WebFluxProperties {
 
-	public static final String PREFIX = "swagger2";
+	public static final String PREFIX = "swagger";
 	
 	/**
 	 * 是否开启swagger

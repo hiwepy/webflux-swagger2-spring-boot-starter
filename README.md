@@ -21,7 +21,7 @@ Spring Boot Starter For WebFlux With Swagger2
 ################################################################################################################  
 ###接口文档（Swagger UI）配置：  
 ################################################################################################################
-swagger2:
+swagger:
   title: Swagger WebFlux Demo
   description: Swagger WebFlux Demo
   version: 1.0.0-SNAPSHOT
