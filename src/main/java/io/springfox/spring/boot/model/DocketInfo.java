@@ -19,51 +19,76 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DocketInfo {
+	
+	/**
+	 * when true it enables rfc6570 url templates
+	 */
+	private boolean enableUrlTemplating = false;
+	/**
+	 * Set this to true in order to make the documentation code generation friendly.
+	 *
+	 * true|false determines the naming strategy used
+	 */
+	private boolean forCodeGen = false;
+	/**
+	 * 标题
+	 **/
+	private String title = "";
+	/**
+	 * 描述
+	 **/
+	private String description = "";
+	/**
+	 * 版本
+	 **/
+	private String version = "";
+	/**
+	 * 许可证
+	 **/
+	private String license = "";
+	/**
+	 * 许可证URL
+	 **/
+	private String licenseUrl = "";
+	/**
+	 * 服务条款URL
+	 **/
+	private String termsOfServiceUrl = "";
 
-    /**
-     * 标题
-     **/
-    private String title = "";
-    /**
-     * 描述
-     **/
-    private String description = "";
-    /**
-     * 版本
-     **/
-    private String version = "";
-    /**
-     * 许可证
-     **/
-    private String license = "";
-    /**
-     * 许可证URL
-     **/
-    private String licenseUrl = "";
-    /**
-     * 服务条款URL
-     **/
-    private String termsOfServiceUrl = "";
+	private Contact contact = new Contact();
 
-    private Contact contact = new Contact();
+	/**
+	 * swagger会解析的包路径
+	 **/
+	private String basePackage = "";
 
-    /**
-     * swagger会解析的包路径
-     **/
-    private String basePackage = "";
+	/**
+	 * swagger会解析的url规则:ant表达式
+	 **/
+	private String basePathPattern = "";
 
-    /**
-     * swagger会解析的url规则:ant表达式
-     **/
-    private String basePathPattern = "";
-    
+	private List<GlobalOperationParameter> globalOperationParameters;
 
-    private List<GlobalOperationParameter> globalOperationParameters;
+	/**
+	 * 忽略的参数类型
+	 **/
+	private List<Class<?>> ignoredParameterTypes = new ArrayList<>();
 
-    /**
-     * 忽略的参数类型
-     **/
-    private List<Class<?>> ignoredParameterTypes = new ArrayList<>();
+	public boolean isEnableUrlTemplating() {
+		return enableUrlTemplating;
+	}
+
+	public boolean isForCodeGen() {
+		return forCodeGen;
+	}
+
+	public void setEnableUrlTemplating(boolean enableUrlTemplating) {
+		this.enableUrlTemplating = enableUrlTemplating;
+	}
+
+	public void setForCodeGen(boolean forCodeGen) {
+		this.forCodeGen = forCodeGen;
+	}
 
 	public String getTitle() {
 		return title;

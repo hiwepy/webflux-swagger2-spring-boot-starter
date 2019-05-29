@@ -23,17 +23,17 @@ public class Authorization {
 	/**
 	 * 鉴权策略ID，对应 SecurityReferences ID
 	 */
-	private String name = "Authorization";
+	private String name = "X-Authorization";
 
 	/**
 	 * 鉴权策略，可选 ApiKey | BasicAuth | None，默认ApiKey
 	 */
-	private String type = "ApiKey";
+	private AuthorizationTypeEnum type = AuthorizationTypeEnum.APIKEY;
 
 	/**
 	 * 鉴权传递的Header参数
 	 */
-	private String keyName = "TOKEN";
+	private String keyName = "token";
 
 	/**
 	 * 需要开启鉴权URL的正则
@@ -47,12 +47,12 @@ public class Authorization {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public String getType() {
+	
+	public AuthorizationTypeEnum getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(AuthorizationTypeEnum type) {
 		this.type = type;
 	}
 

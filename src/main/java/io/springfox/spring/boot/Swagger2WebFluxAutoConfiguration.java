@@ -34,6 +34,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -105,12 +106,17 @@ public class Swagger2WebFluxAutoConfiguration implements BeanFactoryAware {
 		List<Docket> docketList = new LinkedList<>();
 
 		// 没有分组
-		if (swaggerProperties.getDocket().size() == 0) {
-			ApiInfo apiInfo = new ApiInfoBuilder().title(swaggerProperties.getTitle())
-					.description(swaggerProperties.getDescription()).version(swaggerProperties.getVersion())
-					.license(swaggerProperties.getLicense()).licenseUrl(swaggerProperties.getLicenseUrl())
+		if (CollectionUtils.isEmpty(swaggerProperties.getDocket())) {
+			
+			ApiInfo apiInfo = new ApiInfoBuilder()
+					.title(swaggerProperties.getTitle())
+					.description(swaggerProperties.getDescription())
+					.version(swaggerProperties.getVersion())
+					.license(swaggerProperties.getLicense())
+					.licenseUrl(swaggerProperties.getLicenseUrl())
 					.contact(new Contact(swaggerProperties.getContact().getName(), swaggerProperties.getContact().getUrl(), swaggerProperties.getContact().getEmail()))
-					.termsOfServiceUrl(swaggerProperties.getTermsOfServiceUrl()).build();
+					.termsOfServiceUrl(swaggerProperties.getTermsOfServiceUrl())
+					.build();
 
 			Docket docketForBuilder = new Docket(DocumentationType.SWAGGER_2)
 					.host(swaggerProperties.getHost())
@@ -118,10 +124,16 @@ public class Swagger2WebFluxAutoConfiguration implements BeanFactoryAware {
 					.securityContexts(Collections.singletonList(securityContext(swaggerProperties)))
 					.globalOperationParameters(buildGlobalOperationParametersFromSwagger2WebFluxProperties( swaggerProperties.getGlobalOperationParameters()));
 
-			if ("BasicAuth".equalsIgnoreCase(swaggerProperties.getAuthorization().getType())) {
-				docketForBuilder.securitySchemes(Collections.singletonList(basicAuth(swaggerProperties)));
-			} else if (!"None".equalsIgnoreCase(swaggerProperties.getAuthorization().getType())) {
-				docketForBuilder.securitySchemes(Collections.singletonList(apiKey(swaggerProperties)));
+			switch (swaggerProperties.getAuthorization().getType()) {
+				case APIKEY:{
+					docketForBuilder.securitySchemes(Collections.singletonList(apiKey(swaggerProperties)));
+				};break;
+				case BASICAUTH:{
+					docketForBuilder.securitySchemes(Collections.singletonList(basicAuth(swaggerProperties)));
+				};break;
+				default:{
+					
+				};break;
 			}
 
 			// 全局响应消息
@@ -137,7 +149,9 @@ public class Swagger2WebFluxAutoConfiguration implements BeanFactoryAware {
 			/* ignoredParameterTypes **/
 			Class<?>[] array = new Class[swaggerProperties.getIgnoredParameterTypes().size()];
 			Class<?>[] ignoredParameterTypes = swaggerProperties.getIgnoredParameterTypes().toArray(array);
-			docket.ignoredParameterTypes(ignoredParameterTypes);
+			docket.ignoredParameterTypes(ignoredParameterTypes)
+					.enableUrlTemplating(swaggerProperties.isEnableUrlTemplating())
+					.forCodeGeneration(swaggerProperties.isForCodeGen());
 
 			configurableBeanFactory.registerSingleton("defaultDocket", docket);
 			docketList.add(docket);
@@ -167,17 +181,23 @@ public class Swagger2WebFluxAutoConfiguration implements BeanFactoryAware {
 					.securityContexts(Collections.singletonList(securityContext(swaggerProperties)))
 					.globalOperationParameters(assemblyGlobalOperationParameters(swaggerProperties.getGlobalOperationParameters(), docketInfo.getGlobalOperationParameters()));
 
-			if ("BasicAuth".equalsIgnoreCase(swaggerProperties.getAuthorization().getType())) {
-				docketForBuilder.securitySchemes(Collections.singletonList(basicAuth(swaggerProperties)));
-			} else if (!"None".equalsIgnoreCase(swaggerProperties.getAuthorization().getType())) {
-				docketForBuilder.securitySchemes(Collections.singletonList(apiKey(swaggerProperties)));
+			switch (swaggerProperties.getAuthorization().getType()) {
+				case APIKEY:{
+					docketForBuilder.securitySchemes(Collections.singletonList(apiKey(swaggerProperties)));
+				};break;
+				case BASICAUTH:{
+					docketForBuilder.securitySchemes(Collections.singletonList(basicAuth(swaggerProperties)));
+				};break;
+				default:{
+					
+				};break;
 			}
-
+			
 			// 全局响应消息
 			if (!swaggerProperties.getApplyDefaultResponseMessages()) {
 				buildGlobalResponseMessage(swaggerProperties, docketForBuilder);
 			}
-
+			
 			Docket docket = docketForBuilder.groupName(groupName).select()
 					.apis(RequestHandlerSelectors.basePackage(docketInfo.getBasePackage()))
 					.paths(StringUtils.hasText(docketInfo.getBasePathPattern()) ? PathSelectors.ant(docketInfo.getBasePathPattern()) : PathSelectors.any())
@@ -186,11 +206,14 @@ public class Swagger2WebFluxAutoConfiguration implements BeanFactoryAware {
 			/* ignoredParameterTypes **/
 			Class<?>[] array = new Class[docketInfo.getIgnoredParameterTypes().size()];
 			Class<?>[] ignoredParameterTypes = docketInfo.getIgnoredParameterTypes().toArray(array);
-			docket.ignoredParameterTypes(ignoredParameterTypes);
+			docket.ignoredParameterTypes(ignoredParameterTypes)
+					.enableUrlTemplating(docketInfo.isEnableUrlTemplating())
+					.forCodeGeneration(docketInfo.isForCodeGen());
 
 			configurableBeanFactory.registerSingleton(groupName, docket);
 			docketList.add(docket);
 		}
+		
 		return docketList;
 	}
 
