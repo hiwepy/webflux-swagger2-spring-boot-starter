@@ -1,4 +1,4 @@
-# spring-boot-starter-webflux-swagger2
+# webflux-swagger2-spring-boot-starter
 
 Spring Boot Starter For WebFlux With Swagger2
 
@@ -10,7 +10,7 @@ Spring Boot Starter For WebFlux With Swagger2
 
 	<dependency>
 		<groupId>com.github.vindell</groupId>
-		<artifactId>spring-boot-starter-webflux-swagger2</artifactId>
+		<artifactId>webflux-swagger2-spring-boot-starter</artifactId>
 		<version>${project.version}</version>
 	</dependency>
 
