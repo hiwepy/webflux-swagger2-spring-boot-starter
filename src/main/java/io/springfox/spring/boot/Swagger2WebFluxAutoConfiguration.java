@@ -137,7 +137,7 @@ public class Swagger2WebFluxAutoConfiguration implements BeanFactoryAware {
 			}
 
 			// 全局响应消息
-			if (!swaggerProperties.getApplyDefaultResponseMessages()) {
+			if (!swaggerProperties.isApplyDefaultResponseMessages()) {
 				buildGlobalResponseMessage(swaggerProperties, docketForBuilder);
 			}
 
@@ -194,7 +194,7 @@ public class Swagger2WebFluxAutoConfiguration implements BeanFactoryAware {
 			}
 			
 			// 全局响应消息
-			if (!swaggerProperties.getApplyDefaultResponseMessages()) {
+			if (!swaggerProperties.isApplyDefaultResponseMessages()) {
 				buildGlobalResponseMessage(swaggerProperties, docketForBuilder);
 			}
 			
@@ -332,7 +332,7 @@ public class Swagger2WebFluxAutoConfiguration implements BeanFactoryAware {
 		List<Response> optionsResponseMessages = getResponseMessageList(globalResponseMessages.getOptions());
 		List<Response> trackResponseMessages = getResponseMessageList(globalResponseMessages.getTrace());
 
-		docketForBuilder.useDefaultResponseMessages(swaggerProperties.getApplyDefaultResponseMessages())
+		docketForBuilder.useDefaultResponseMessages(swaggerProperties.isApplyDefaultResponseMessages())
 				.globalResponses(HttpMethod.POST, postResponseMessages)
 				.globalResponses(HttpMethod.GET, getResponseMessages)
 				.globalResponses(HttpMethod.PUT, putResponseMessages)
