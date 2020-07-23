@@ -13,7 +13,7 @@
 	<groupId>com.github.hiwepy</groupId>
 	<artifactId>webflux-swagger2-spring-boot-starter</artifactId>
 	<description>Spring Boot Starter For WebFlux With Swagger2</description>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.0.0.RELEASE</version>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<url>https://github.com/hiwepy/${project.artifactId}</url>
 	<packaging>jar</packaging>
@@ -381,7 +381,7 @@
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
 		<maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
 		<!-- http://oss.jfrog.org/artifactory/oss-snapshot-local/io/springfox/ -->
-		<springfox.version>3.0.0</springfox.version> <!-- 3.0.0-SNAPSHOT -->
+		<springfox.version>2.10.5</springfox.version> <!-- 3.0.0-SNAPSHOT -->
 		<swagger.version>1.5.24</swagger.version>
 	</properties>
 	
