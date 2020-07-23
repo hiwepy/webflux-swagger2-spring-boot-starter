@@ -11,7 +11,7 @@ Spring Boot Starter For WebFlux With Swagger2
 	<dependency>
 		<groupId>com.github.hiwepy</groupId>
 		<artifactId>webflux-swagger2-spring-boot-starter</artifactId>
-		<version>${project.version}</version>
+		<version>1.0.1.RELEASE</version>
 	</dependency>
 
 ### 配置参考
