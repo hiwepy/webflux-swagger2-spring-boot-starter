@@ -383,6 +383,7 @@
 		<!-- http://oss.jfrog.org/artifactory/oss-snapshot-local/io/springfox/ -->
 		<springfox.version>2.10.5</springfox.version> <!-- 3.0.0-SNAPSHOT -->
 		<swagger.version>1.5.24</swagger.version>
+		<webjars-locator.version>0.40</webjars-locator.version>
 	</properties>
 	
 	<dependencyManagement>
@@ -544,6 +545,13 @@
 			    <version>${swagger.version}</version>
 			</dependency>
 			
+			<!-- https://mvnrepository.com/artifact/org.webjars/webjars-locator -->
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>webjars-locator</artifactId>
+				<version>${webjars-locator.version}</version>
+			</dependency>
+			
 		</dependencies>
 	</dependencyManagement>
 	
@@ -626,15 +634,22 @@
 		    <groupId>io.springfox</groupId>
 		    <artifactId>springfox-spring-webflux</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webflux</artifactId>
-		</dependency>
 		
 		<dependency>
 		    <groupId>io.springfox</groupId>
 		    <artifactId>springfox-swagger-ui</artifactId>
 		    <optional>true</optional>
+		</dependency>
+		
+		<!-- For Spring WebFlux -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webflux</artifactId>
+		</dependency>
+		<!-- For Webjars -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>webjars-locator</artifactId>
 		</dependency>
 
 	</dependencies>
