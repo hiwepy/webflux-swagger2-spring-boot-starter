@@ -16,7 +16,7 @@ public class Swagger2UiWebFluxConfigurer implements WebFluxConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/swagger-ui/**").addResourceLocations(META_INF_SPRINGFOX_SWAGGER_UI_RESOURCES).resourceChain(false);
-		registry.addResourceHandler("/doc.html**").addResourceLocations(META_INF_RESOURCES).resourceChain(false);
+		registry.addResourceHandler("/doc.html").addResourceLocations(META_INF_RESOURCES).resourceChain(false);
 		if(!registry.hasMappingForPattern("/webjars/**")) {
 			registry.addResourceHandler("/webjars/**").addResourceLocations(META_INF_WEBJAR_RESOURCES)
 				.resourceChain(false).addResolver(new WebJarsResourceResolver());
