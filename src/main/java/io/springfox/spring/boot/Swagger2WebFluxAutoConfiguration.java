@@ -80,6 +80,11 @@ public class Swagger2WebFluxAutoConfiguration implements BeanFactoryAware {
 	private BeanFactory beanFactory;
 
 	@Bean
+	public Swagger2UiWebFluxConfigurer swagger2UiWebFluxConfigurer() {
+		return new Swagger2UiWebFluxConfigurer();
+	}
+	
+	@Bean
 	public UiConfiguration uiConfiguration(Swagger2WebFluxProperties swaggerProperties) {
 		return UiConfigurationBuilder.builder()
 				.deepLinking(swaggerProperties.getUiConfig().getDeepLinking())
