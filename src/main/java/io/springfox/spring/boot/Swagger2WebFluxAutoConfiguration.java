@@ -34,10 +34,12 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Primary;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import io.springfox.spring.boot.extend.ExtendServiceModelToSwagger2MapperImpl;
 import io.springfox.spring.boot.model.DocketInfo;
 import io.springfox.spring.boot.model.GlobalOperationParameter;
 import io.springfox.spring.boot.model.GlobalResponseMessage;
@@ -64,6 +66,7 @@ import springfox.documentation.swagger.web.ApiKeyVehicle;
 import springfox.documentation.swagger.web.UiConfiguration;
 import springfox.documentation.swagger.web.UiConfigurationBuilder;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebFlux;
+import springfox.documentation.swagger2.mappers.ServiceModelToSwagger2Mapper;
 
 /**
  * 参考https://my.oschina.net/go4it/blog/3035218
@@ -82,6 +85,12 @@ public class Swagger2WebFluxAutoConfiguration implements BeanFactoryAware {
 	@Bean
 	public Swagger2UiWebFluxConfigurer swagger2UiWebFluxConfigurer() {
 		return new Swagger2UiWebFluxConfigurer();
+	}
+	
+	@Primary
+	@Bean
+	public ServiceModelToSwagger2Mapper ServiceModelToSwagger2Mapper() {
+		return new ExtendServiceModelToSwagger2MapperImpl();
 	}
 	
 	@Bean
