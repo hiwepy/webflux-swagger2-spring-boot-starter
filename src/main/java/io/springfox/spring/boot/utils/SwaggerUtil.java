@@ -124,6 +124,14 @@ public class SwaggerUtil {
 		return type;
 	}
  
+	public static boolean hasGenerics(String type) {
+		if (type.indexOf("»") > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	/**
 	 * 判断是否存在非基本类型<参照类型>
 	 * @param type

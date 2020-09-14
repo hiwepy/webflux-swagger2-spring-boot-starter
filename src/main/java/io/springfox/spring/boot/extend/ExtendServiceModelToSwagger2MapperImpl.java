@@ -22,6 +22,7 @@ import io.springfox.spring.boot.utils.SwaggerUtil;
 import io.swagger.models.Model;
 import io.swagger.models.Swagger;
 import io.swagger.models.properties.Property;
+import lombok.extern.slf4j.Slf4j;
 import springfox.documentation.service.Documentation;
 import springfox.documentation.swagger2.mappers.ServiceModelToSwagger2MapperImpl;
 
@@ -30,21 +31,24 @@ import springfox.documentation.swagger2.mappers.ServiceModelToSwagger2MapperImpl
  * 
  * @author ： <a href="https://github.com/vindell">vindell</a>
  */
+@Slf4j
 public class ExtendServiceModelToSwagger2MapperImpl extends ServiceModelToSwagger2MapperImpl {
 
 	@Override
 	public Swagger mapDocumentation(Documentation from) {
 		Swagger swagger = super.mapDocumentation(from);
+		log.debug("Definitions: {}", swagger.getDefinitions());
 		// 响应返回参数增强
 		Iterator<Map.Entry<String, Model>> it = swagger.getDefinitions().entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry<String, Model> entry = it.next();
 			Model model = entry.getValue();
 			String key = entry.getKey();
-			if (key.contains("JsonResult")) {
+			if (key.contains("ApiRestResponse") && SwaggerUtil.hasGenerics(key)) {
 				Map<String, Property> props = model.getProperties();
 				Property dataProp = props.get("data");
 				Property newProp = SwaggerUtil.getNewProp(dataProp, SwaggerUtil.getRealType(key), swagger.getDefinitions());
+				log.debug("newProp:{}", newProp);
 				props.put("data", newProp);
 			}
 		}
