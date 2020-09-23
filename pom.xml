@@ -621,6 +621,12 @@
 		<dependency>
 		    <groupId>io.springfox</groupId>
 		    <artifactId>springfox-swagger-common</artifactId>
+		    <exclusions>
+		    	<exclusion>
+		    		<groupId>io.github.classgraph</groupId>
+		    		<artifactId>classgraph</artifactId>
+		    	</exclusion>
+		    </exclusions>
 		</dependency>
  		<dependency>
 		    <groupId>io.springfox</groupId>
