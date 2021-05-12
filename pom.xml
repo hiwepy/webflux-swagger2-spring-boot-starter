@@ -382,28 +382,17 @@
 		<maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
 		<springfox.version>3.0.0</springfox.version>
 		<swagger2.version>2.1.9</swagger2.version>
-		<swagger-bootstrap-ui.version>1.9.6</swagger-bootstrap-ui.version> 
 		<webjars-locator.version>0.40</webjars-locator.version>
 		<webjars-locator-core.version>0.46</webjars-locator-core.version>
 		<classgraph.version>4.8.102</classgraph.version>
+		<swagger-bootstrap-ui.version>1.9.6</swagger-bootstrap-ui.version> 
+		<swagger-knife4j-ui.version>3.0.2</swagger-knife4j-ui.version>
+		<swagger-springfox-ui.version>${springfox.version}</swagger-springfox-ui.version> 
 	</properties>
 	
 	<dependencyManagement>
 		<dependencies>
 			
-			<!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
-			<dependency>
-			    <groupId>io.springfox</groupId>
-			    <artifactId>springfox-boot-starter</artifactId>
-			    <version>${springfox.version}</version>
-			</dependency>
-			<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
-			<dependency>
-			    <groupId>io.springfox</groupId>
-			    <artifactId>springfox-swagger-ui</artifactId>
-			    <version>${springfox.version}</version>
-			</dependency> 
-		    
 			<!-- https://mvnrepository.com/artifact/io.swagger.core.v3 -->
 			<dependency>
 				<groupId>io.swagger.core.v3</groupId>
@@ -438,6 +427,25 @@
 			    <groupId>io.github.classgraph</groupId>
 			    <artifactId>classgraph</artifactId>
 			    <version>${classgraph.version}</version>
+			</dependency>
+			
+			<!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
+			<dependency>
+			    <groupId>io.springfox</groupId>
+			    <artifactId>springfox-boot-starter</artifactId>
+			    <version>${springfox.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+			<dependency>
+			    <groupId>io.springfox</groupId>
+			    <artifactId>springfox-swagger-ui</artifactId>
+			    <version>${swagger-springfox-ui.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/com.github.xiaoymin/knife4j-spring-ui -->
+			<dependency>
+			    <groupId>com.github.xiaoymin</groupId>
+			    <artifactId>knife4j-spring-ui</artifactId>
+			    <version>${swagger-knife4j-ui.version}</version>
 			</dependency>
 			
 		</dependencies>
@@ -496,15 +504,26 @@
 			<artifactId>spring-webflux</artifactId>
 		</dependency>
 		
+		<!-- For Webjars -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator</artifactId>
+		</dependency>
         <!-- For SpringFox 3.x -->
         <dependency>
 		    <groupId>io.springfox</groupId>
 		    <artifactId>springfox-boot-starter</artifactId>
 		</dependency>
-		<!-- For Webjars -->
+		<!-- For Swagger UI -->
 		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>webjars-locator</artifactId>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger-ui</artifactId>
+		    <optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.github.xiaoymin</groupId>
+			<artifactId>knife4j-spring-ui</artifactId>
+			<optional>true</optional>
 		</dependency>
 		
 	</dependencies>
