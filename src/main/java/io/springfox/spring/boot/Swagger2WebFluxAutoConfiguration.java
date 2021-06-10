@@ -45,10 +45,12 @@ import io.springfox.spring.boot.model.GlobalResponseMessage;
 import io.springfox.spring.boot.model.GlobalResponseMessageBody;
 import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.RequestParameterBuilder;
 import springfox.documentation.builders.ResponseBuilder;
+import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
@@ -279,9 +281,9 @@ public class Swagger2WebFluxAutoConfiguration implements BeanFactoryAware {
 			parameters.add(new RequestParameterBuilder()
 					.name(globalOperationParameter.getName())
 					.description(globalOperationParameter.getDescription())
-					//.modelRef(new ModelRef(globalOperationParameter.getModelRef()))
-					//.parameterType(globalOperationParameter.getParameterType())
-					.required(Boolean.parseBoolean(globalOperationParameter.getRequired())).build());
+					.hidden(globalOperationParameter.isHidden())
+					.required(globalOperationParameter.isRequired())
+					.build());
 		}
 		return parameters;
 	}
