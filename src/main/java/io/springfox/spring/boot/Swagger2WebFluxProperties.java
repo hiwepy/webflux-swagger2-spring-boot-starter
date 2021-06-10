@@ -16,11 +16,10 @@
 package io.springfox.spring.boot;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 import io.springfox.spring.boot.model.Authorization;
 import io.springfox.spring.boot.model.Contact;
@@ -28,16 +27,22 @@ import io.springfox.spring.boot.model.DocketInfo;
 import io.springfox.spring.boot.model.GlobalOperationParameter;
 import io.springfox.spring.boot.model.GlobalResponseMessage;
 import io.springfox.spring.boot.model.UiConfig;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * TODO
  * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
  */
 @ConfigurationProperties(Swagger2WebFluxProperties.PREFIX)
+@Getter
+@Setter
+@ToString
 public class Swagger2WebFluxProperties {
 
 	public static final String PREFIX = "swagger";
-	
+
 	/**
 	 * 是否开启swagger
 	 **/
@@ -82,6 +87,7 @@ public class Swagger2WebFluxProperties {
 	 **/
 	private List<Class<?>> ignoredParameterTypes = new ArrayList<>();
 
+	@NestedConfigurationProperty
 	private Contact contact = new Contact();
 
 	/**
@@ -89,20 +95,21 @@ public class Swagger2WebFluxProperties {
 	 **/
 	private String basePackage = "";
 
-	/**
+    /**
      * swagger会解析的url规则:ant表达式
      **/
     private String basePathPattern = "";
-
-	/**
-	 * 分组文档
-	 **/
-	private Map<String, DocketInfo> docket = new LinkedHashMap<>();
-
+    
 	/**
 	 * host信息
 	 **/
 	private String host = "";
+	
+	/**
+	 * 分组文档
+	 **/
+	@NestedConfigurationProperty
+	private List<DocketInfo> groups = new ArrayList<DocketInfo>();
 
 	/**
 	 * 全局参数配置
@@ -112,6 +119,7 @@ public class Swagger2WebFluxProperties {
 	/**
 	 * 页面功能配置
 	 **/
+	@NestedConfigurationProperty
 	private UiConfig uiConfig = new UiConfig();
 
 	/**
@@ -122,171 +130,13 @@ public class Swagger2WebFluxProperties {
 	/**
 	 * 全局响应消息
 	 **/
+	@NestedConfigurationProperty
 	private GlobalResponseMessage globalResponseMessage;
 
 	/**
 	 * 全局统一鉴权配置
 	 **/
+	@NestedConfigurationProperty
 	private Authorization authorization = new Authorization();
 
-	public boolean getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	public boolean isEnableUrlTemplating() {
-		return enableUrlTemplating;
-	}
-
-	public boolean isForCodeGen() {
-		return forCodeGen;
-	}
-
-	public void setEnableUrlTemplating(boolean enableUrlTemplating) {
-		this.enableUrlTemplating = enableUrlTemplating;
-	}
-
-	public void setForCodeGen(boolean forCodeGen) {
-		this.forCodeGen = forCodeGen;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getVersion() {
-		return version;
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
-	}
-
-	public String getLicense() {
-		return license;
-	}
-
-	public void setLicense(String license) {
-		this.license = license;
-	}
-
-	public String getLicenseUrl() {
-		return licenseUrl;
-	}
-
-	public void setLicenseUrl(String licenseUrl) {
-		this.licenseUrl = licenseUrl;
-	}
-
-	public String getTermsOfServiceUrl() {
-		return termsOfServiceUrl;
-	}
-
-	public void setTermsOfServiceUrl(String termsOfServiceUrl) {
-		this.termsOfServiceUrl = termsOfServiceUrl;
-	}
-
-	public List<Class<?>> getIgnoredParameterTypes() {
-		return ignoredParameterTypes;
-	}
-
-	public void setIgnoredParameterTypes(List<Class<?>> ignoredParameterTypes) {
-		this.ignoredParameterTypes = ignoredParameterTypes;
-	}
-
-	public Contact getContact() {
-		return contact;
-	}
-
-	public void setContact(Contact contact) {
-		this.contact = contact;
-	}
-
-	public String getBasePackage() {
-		return basePackage;
-	}
-
-	public void setBasePackage(String basePackage) {
-		this.basePackage = basePackage;
-	}
-
-	public String getBasePathPattern() {
-		return basePathPattern;
-	}
-
-	public void setBasePathPattern(String basePathPattern) {
-		this.basePathPattern = basePathPattern;
-	}
-
-	public Map<String, DocketInfo> getDocket() {
-		return docket;
-	}
-
-	public void setDocket(Map<String, DocketInfo> docket) {
-		this.docket = docket;
-	}
-
-	public String getHost() {
-		return host;
-	}
-
-	public void setHost(String host) {
-		this.host = host;
-	}
-
-	public List<GlobalOperationParameter> getGlobalOperationParameters() {
-		return globalOperationParameters;
-	}
-
-	public void setGlobalOperationParameters(List<GlobalOperationParameter> globalOperationParameters) {
-		this.globalOperationParameters = globalOperationParameters;
-	}
-
-	public UiConfig getUiConfig() {
-		return uiConfig;
-	}
-
-	public void setUiConfig(UiConfig uiConfig) {
-		this.uiConfig = uiConfig;
-	}
-
-	public boolean getApplyDefaultResponseMessages() {
-		return applyDefaultResponseMessages;
-	}
-
-	public void setApplyDefaultResponseMessages(boolean applyDefaultResponseMessages) {
-		this.applyDefaultResponseMessages = applyDefaultResponseMessages;
-	}
-
-	public GlobalResponseMessage getGlobalResponseMessage() {
-		return globalResponseMessage;
-	}
-
-	public void setGlobalResponseMessage(GlobalResponseMessage globalResponseMessage) {
-		this.globalResponseMessage = globalResponseMessage;
-	}
-
-	public Authorization getAuthorization() {
-		return authorization;
-	}
-
-	public void setAuthorization(Authorization authorization) {
-		this.authorization = authorization;
-	}
-	
 }
