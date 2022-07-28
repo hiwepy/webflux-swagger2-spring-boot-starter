@@ -41,16 +41,16 @@ import io.swagger.models.properties.StringProperty;
  */
 public class SwaggerUtil {
  
-	/**
+	/*
 	 * 判断是否Swagger基本类型
-	 * @param type
-	 * @return
+	 * @param type javaType
+	 * @return 是否基础类型
 	 */
 	public static boolean isBaseType(String type) {
 		return SwaggerUtil.getSwaggerProperty(type) != null;
 	}
  
-	/**
+	/*
 	 * 获取Swagger支持的类型
 	 * @return
 	 */
@@ -67,7 +67,7 @@ public class SwaggerUtil {
 		return map;
 	}
  
-	/**
+	/*
 	 * 通过java类型获取Swagger类型
 	 * @param type javaType
 	 * @return swaggerType
@@ -87,10 +87,10 @@ public class SwaggerUtil {
 		return type.startsWith("list") || type.startsWith("set");
 	}
  
-	/**
+	/*
 	 * 获取非基本类型的T<br>
 	 * new String[] { "A<List<C1>>", "A<C2>", "A<B<String,<String,List<C4>>>>" }
-	 * @param type
+	 * @param type javaType
 	 * @return C1,C2,C3,C4
 	 */
 	public static String getRef(String type) {
@@ -109,7 +109,7 @@ public class SwaggerUtil {
 		return "!!Unknown T!!";
 	}
  
-	/**
+	/*
 	 * 获取对象类型，主要是剥离第一层<>
 	 * @param type ApiRestResponse<Map<Operator, List<Map<String, Customer>>>>
 	 * @return Map<Operator, List<Map<String, Customer>>>
@@ -132,9 +132,9 @@ public class SwaggerUtil {
 		}
 	}
 	
-	/**
+	/*
 	 * 判断是否存在非基本类型<参照类型>
-	 * @param type
+	 * @param type javaType
 	 * @return
 	 */
 	public static boolean hasRef(String type) {
@@ -156,12 +156,12 @@ public class SwaggerUtil {
 		}
 	}
  
-	/**
+	/*
 	 * 递归处理泛型类型 <br>
 	 * ApiRestResponse<Map<Map<Long, Operator>, List<Map<String, Customer>>>>
-	 * @param dataProp
-	 * @param type
-	 * @param definitions
+	 * @param dataProp  dataProp
+	 * @param type javaType
+	 * @param definitions  definitions
 	 * @return
 	 */
 	public static Property getNewProp(Property dataProp, String type, Map<String, Model> definitions) {

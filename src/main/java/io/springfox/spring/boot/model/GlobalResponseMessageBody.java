@@ -23,7 +23,7 @@ public class GlobalResponseMessageBody {
 	/**
 	 * 响应码
 	 **/
-	private String code;
+	private int code;
 
 	/**
 	 * 响应消息
