@@ -29,6 +29,16 @@ public class GlobalOperationParameter {
 	 * 描述信息
 	 **/
 	private String description;
+	
+	/**
+	 * 默认值
+	 **/
+	private String defaultValue;
+
+	/**
+	 * 指定参数类型
+	 **/
+	private String modelRef;
 
 	/**
 	 * 参数放在哪个地方:header,query,path,body.form
@@ -49,5 +59,15 @@ public class GlobalOperationParameter {
 	 * 参数格式
 	 **/
 	private String pattern;
+  
+	/**
+	 * 参数是否允许为空
+	 **/
+	private boolean allowEmptyValue;
+	
+	/**
+	 * 参数示例
+	 **/
+	private Object scalarExample;
 
 }

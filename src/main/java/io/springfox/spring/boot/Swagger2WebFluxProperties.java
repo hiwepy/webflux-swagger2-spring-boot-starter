@@ -16,11 +16,10 @@
 package io.springfox.spring.boot;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 import io.springfox.spring.boot.model.Authorization;
 import io.springfox.spring.boot.model.Contact;
@@ -43,7 +42,7 @@ import lombok.ToString;
 public class Swagger2WebFluxProperties {
 
 	public static final String PREFIX = "swagger";
-	
+
 	/**
 	 * 是否开启swagger
 	 **/
@@ -88,6 +87,7 @@ public class Swagger2WebFluxProperties {
 	 **/
 	private List<Class<?>> ignoredParameterTypes = new ArrayList<>();
 
+	@NestedConfigurationProperty
 	private Contact contact = new Contact();
 
 	/**
@@ -95,20 +95,21 @@ public class Swagger2WebFluxProperties {
 	 **/
 	private String basePackage = "";
 
-	/**
+    /**
      * swagger会解析的url规则:ant表达式
      **/
     private String basePathPattern = "";
-
-	/**
-	 * 分组文档
-	 **/
-	private Map<String, DocketInfo> docket = new LinkedHashMap<>();
-
+    
 	/**
 	 * host信息
 	 **/
 	private String host = "";
+	
+	/**
+	 * 分组文档
+	 **/
+	@NestedConfigurationProperty
+	private List<DocketInfo> groups = new ArrayList<DocketInfo>();
 
 	/**
 	 * 全局参数配置
@@ -118,6 +119,7 @@ public class Swagger2WebFluxProperties {
 	/**
 	 * 页面功能配置
 	 **/
+	@NestedConfigurationProperty
 	private UiConfig uiConfig = new UiConfig();
 
 	/**
@@ -128,11 +130,13 @@ public class Swagger2WebFluxProperties {
 	/**
 	 * 全局响应消息
 	 **/
+	@NestedConfigurationProperty
 	private GlobalResponseMessage globalResponseMessage;
 
 	/**
 	 * 全局统一鉴权配置
 	 **/
+	@NestedConfigurationProperty
 	private Authorization authorization = new Authorization();
-	
+
 }
