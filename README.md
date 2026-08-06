@@ -1,46 +1,170 @@
+<a id="readme-top"></a>
+
+<div align="center">
+
 # webflux-swagger2-spring-boot-starter
 
-Spring Boot Starter For WebFlux With Swagger2
+**Spring Boot Starter for webflux-swagger2**
 
-### 说明
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.easy4j/webflux-swagger2-spring-boot-starter)](https://github.com/easy-4-java/webflux-swagger2-spring-boot-starter)
+[![Java](https://img.shields.io/badge/Java-17-orange)](#3-requirements-and-compatibility)
+[![License](https://img.shields.io/badge/license-Apache-2.0-green)](https://www.apache.org/licenses/LICENSE-2.0)
 
- > 实现 Spring WebFlux 与 Swagger2 相关对象的自动创建和参数绑定
+[简体中文](./README.zh-CN.md) | [English](./README.md)
 
-### Maven
+[Positioning](#1-positioning) · [Capabilities](#2-core-capabilities) ·
+[Dependency](#5-dependency) · [Quick Start](#6-quick-start) ·
+[Configuration](#7-configuration-reference) · [Versions](#9-version-lines-and-compatibility) ·
+[Build](#10-build-and-test) · [License](#12-license)
+
+</div>
+
+---
+
+> **Current Version**：`2.3.x.20260527-SNAPSHOT`<br>
+> **JDK Baseline**：`17`<br>
+> **Group ID**：`io.github.easy4j`<br>
+> **Artifact ID**：`webflux-swagger2-spring-boot-starter`<br>
+> **License**：Apache License 2.0<br>
+
+## 1. Positioning
+
+**webflux-swagger2-spring-boot-starter** is a Spring Boot starter that integrates **webflux-swagger2** for applications using webflux-swagger2. It provides auto-configuration, property binding, and ready-to-use beans so that applications can consume webflux-swagger2 capabilities with minimal setup.
+
+| Dimension | Description |
+|---|---|
+| Type | Spring Boot Starter |
+| Consumers | Spring Boot applications using webflux-swagger2 |
+| Core Capabilities | auto-configuration, property binding, ready-to-use beans for webflux-swagger2 |
+| JDK | `17` |
+| Coordinates | `io.github.easy4j:webflux-swagger2-spring-boot-starter:2.3.x.20260527-SNAPSHOT` |
+| Config Prefix | `webflux.swagger2` |
+
+## 2. Core Capabilities
+
+| Capability | Status | Description |
+|---|:---:|---|
+| Auto-configuration | ✅ Stable | Registers webflux-swagger2 beans automatically |
+| Property Binding | ✅ Stable | Binds `webflux.swagger2.*` to `Swagger2WebFluxProperties` |
+| `Swagger2UiWebFluxConfigurer` bean | ✅ Stable | Auto-registered via Swagger2WebFluxAutoConfiguration |
+
+## 3. Requirements and Compatibility
+
+| Dependency | Minimum | Evidence |
+|---|---:|---|
+| JDK | `17` | `pom.xml` |
+| Spring Boot | `2.3.12.RELEASE` | `pom.xml` parent |
+| Maven | `3.6+` | Maven Enforcer |
+
+## 4. Auto-configuration
+
+The starter auto-configures the following beans:
+
+| Bean | Condition | Missing Behavior |
+|---|---|---|
+| `Swagger2UiWebFluxConfigurer` | classpath + property | not created |
+| `UiConfiguration` | classpath + property | not created |
+| `return` | classpath + property | not created |
+
+Auto-configuration registration:
+
+- `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` (Spring Boot 2.7+ / 3.x / 4.x)
+- `META-INF/spring.factories` (Spring Boot 2.x legacy)
+
+## 5. Dependency
 
 ```xml
 <dependency>
-    <groupId>com.github.hiwepy</groupId>
+    <groupId>io.github.easy4j</groupId>
     <artifactId>webflux-swagger2-spring-boot-starter</artifactId>
-    <version>${project.version}</version>
+    <version>2.3.x.20260527-SNAPSHOT</version>
 </dependency>
 ```
 
-### 配置参考
+No additional easy4j component dependencies.
 
- > application.yml
+## 6. Quick Start
 
-################################################################################################################  
-###接口文档（Swagger UI）配置：  
-################################################################################################################
-swagger:
-  title: Swagger WebFlux Demo
-  description: Swagger WebFlux Demo
-  version: 1.0.0-SNAPSHOT
-  license: Apache License, Version 2.0
-  license-url: https://www.apache.org/licenses/LICENSE-2.0.html
-  contact:
-    name: wandl
-    email: hnxyhcwdl1003@163.com
-    url: https://www.wdlspace.com/
-  base-package: io.github.wandl
-  base-path-pattern: /**
+### 6.1 Add dependency
 
-### Sample
+Add the dependency above to your `pom.xml`.
 
-[https://github.com/vindell/spring-boot-starter-samples/tree/master/spring-boot-sample-webflux-swagger2](https://github.com/vindell/spring-boot-starter-samples/tree/master/spring-boot-sample-webflux-swagger2 "spring-boot-sample-webflux-swagger2")
+### 6.2 Configure
 
-### 参考资料
+```yaml
+webflux.swagger2:
+  enabled: true
+```
 
-参考https://my.oschina.net/go4it/blog/3035218
-部分代码来来自：https://github.com/SpringForAll/spring-boot-starter-swagger
+### 6.3 Use the bean
+
+```java
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+Then inject the auto-configured bean in your code:
+
+```java
+@Autowired
+private Swagger2UiWebFluxConfigurer swagger2UiWebFluxConfigurer;
+```
+
+## 7. Configuration Reference
+
+### 7.1 Config Prefix
+
+`webflux.swagger2`
+
+### 7.2 Configuration Items
+
+| Property | Type | Default | Required | Description | Sensitive |
+|---|---|---|:---:|---|:---:|
+| `webflux.swagger2.enabled` | boolean | `true` | No | Enable the starter | No |
+<!-- additional properties below -->
+
+## 8. Version Lines and Compatibility
+
+| Branch | JDK | Spring Boot | Component Version | Status |
+|---|---:|---:|---|:---:|
+| `2.3.x` / `2.7.x` | `8+` | 2.3.x / 2.7.x | `1.0.x` | Maintenance |
+| `3.0.x` ~ `3.5.x` | `17` | 3.x | `2.0.x` | Maintenance |
+| `4.0.x` / `4.1.x` | `17+` | 4.x | `3.0.x` | Active |
+
+## 9. Build and Test
+
+```bash
+mvn clean verify
+mvn -pl webflux-swagger2-spring-boot-starter -am test
+```
+
+## 10. Troubleshooting
+
+| Symptom | Diagnosis | Resolution |
+|---|---|---|
+| Bean not created | Check auto-configuration report | Verify `webflux.swagger2.enabled=true` and classpath |
+| `ClassNotFoundException` | Missing dependency | Add the required module |
+| Version conflict | `mvn dependency:tree` | Use BOM for version alignment |
+
+## 11. Contribution
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Run `mvn clean verify` before submitting.
+4. Submit a pull request.
+
+## 12. License
+
+This project is licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+---
+
+<div align="center">
+
+[Back to top](#readme-top) · [Issues](https://github.com/easy-4-java/webflux-swagger2-spring-boot-starter/issues) · [Repository](https://github.com/easy-4-java/webflux-swagger2-spring-boot-starter)
+
+</div>
