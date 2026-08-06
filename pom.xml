@@ -432,6 +432,7 @@
         <swagger-bootstrap-ui.version>1.9.6</swagger-bootstrap-ui.version> 
         <swagger-knife4j-ui.version>3.0.3</swagger-knife4j-ui.version>
         <swagger-springfox-ui.version>${springfox.version}</swagger-springfox-ui.version> 
+                <slf4j.version>2.0.18</slf4j.version>
     </properties>
     
     <dependencyManagement>
@@ -502,7 +503,12 @@
                 <version>${swagger-knife4j-ui.version}</version>
             </dependency>
             
-        </dependencies>
+                <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+</dependencies>
     </dependencyManagement>
     
     <dependencies>
@@ -519,7 +525,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>2.0.13</version>
+            <version>${slf4j.version}</version>
         </dependency>
         
         
