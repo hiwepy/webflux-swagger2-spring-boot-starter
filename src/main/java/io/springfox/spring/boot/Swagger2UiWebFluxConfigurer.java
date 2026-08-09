@@ -2,7 +2,7 @@ package io.springfox.spring.boot;
 
 import org.springframework.web.reactive.config.ResourceHandlerRegistry;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
-import org.springframework.web.reactive.resource.WebJarsResourceResolver;
+import org.springframework.web.reactive.resource.LiteWebJarsResourceResolver;
 
 /**
  * http://springfox.github.io/springfox/docs/current/#history
@@ -19,7 +19,7 @@ public class Swagger2UiWebFluxConfigurer implements WebFluxConfigurer {
 		registry.addResourceHandler("/doc.html").addResourceLocations(META_INF_RESOURCES).resourceChain(false);
 		if(!registry.hasMappingForPattern("/webjars/**")) {
 			registry.addResourceHandler("/webjars/**").addResourceLocations(META_INF_WEBJAR_RESOURCES)
-				.resourceChain(false).addResolver(new WebJarsResourceResolver());
+				.resourceChain(false).addResolver(new LiteWebJarsResourceResolver());
 		}
 	}
 	

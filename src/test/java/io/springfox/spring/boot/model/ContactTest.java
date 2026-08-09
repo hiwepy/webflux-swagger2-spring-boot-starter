@@ -35,4 +35,16 @@ class ContactTest {
         Contact instance = new Contact();
         assertThat(instance).isNotNull();
     }
+
+    @Test
+    @DisplayName("Fields can be set and read")
+    void testFields() {
+        Contact contact = new Contact();
+        contact.setName("John");
+        contact.setUrl("https://example.com");
+        contact.setEmail("john@example.com");
+        assertThat(contact.getName()).isEqualTo("John");
+        assertThat(contact.getUrl()).isEqualTo("https://example.com");
+        assertThat(contact.getEmail()).isEqualTo("john@example.com");
+    }
 }

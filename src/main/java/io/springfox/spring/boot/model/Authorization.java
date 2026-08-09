@@ -43,4 +43,36 @@ public class Authorization {
 	 */
 	private String authRegex = "^.*$";
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public AuthorizationTypeEnum getType() {
+		return type;
+	}
+
+	public void setType(AuthorizationTypeEnum type) {
+		this.type = type;
+	}
+
+	public String getKeyName() {
+		return keyName;
+	}
+
+	public void setKeyName(String keyName) {
+		this.keyName = keyName;
+	}
+
+	public String getAuthRegex() {
+		return authRegex;
+	}
+
+	public void setAuthRegex(String authRegex) {
+		this.authRegex = authRegex;
+	}
+
 }

@@ -77,4 +77,108 @@ public class DocketInfo {
 	 **/
 	private List<Class<?>> ignoredParameterTypes = new ArrayList<>();
 
+	public boolean isEnableUrlTemplating() {
+		return enableUrlTemplating;
+	}
+
+	public void setEnableUrlTemplating(boolean enableUrlTemplating) {
+		this.enableUrlTemplating = enableUrlTemplating;
+	}
+
+	public boolean isForCodeGen() {
+		return forCodeGen;
+	}
+
+	public void setForCodeGen(boolean forCodeGen) {
+		this.forCodeGen = forCodeGen;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
+	public String getLicense() {
+		return license;
+	}
+
+	public void setLicense(String license) {
+		this.license = license;
+	}
+
+	public String getLicenseUrl() {
+		return licenseUrl;
+	}
+
+	public void setLicenseUrl(String licenseUrl) {
+		this.licenseUrl = licenseUrl;
+	}
+
+	public String getTermsOfServiceUrl() {
+		return termsOfServiceUrl;
+	}
+
+	public void setTermsOfServiceUrl(String termsOfServiceUrl) {
+		this.termsOfServiceUrl = termsOfServiceUrl;
+	}
+
+	public Contact getContact() {
+		return contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
+
+	public String getBasePackage() {
+		return basePackage;
+	}
+
+	public void setBasePackage(String basePackage) {
+		this.basePackage = basePackage;
+	}
+
+	public String getBasePathPattern() {
+		return basePathPattern;
+	}
+
+	public void setBasePathPattern(String basePathPattern) {
+		this.basePathPattern = basePathPattern;
+	}
+
+	public List<GlobalOperationParameter> getGlobalOperationParameters() {
+		return globalOperationParameters;
+	}
+
+	public void setGlobalOperationParameters(List<GlobalOperationParameter> globalOperationParameters) {
+		this.globalOperationParameters = globalOperationParameters;
+	}
+
+	public List<Class<?>> getIgnoredParameterTypes() {
+		return ignoredParameterTypes;
+	}
+
+	public void setIgnoredParameterTypes(List<Class<?>> ignoredParameterTypes) {
+		this.ignoredParameterTypes = ignoredParameterTypes;
+	}
+
 }

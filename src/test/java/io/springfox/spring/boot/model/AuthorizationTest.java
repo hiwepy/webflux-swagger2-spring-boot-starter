@@ -35,4 +35,18 @@ class AuthorizationTest {
         Authorization instance = new Authorization();
         assertThat(instance).isNotNull();
     }
+
+    @Test
+    @DisplayName("Fields can be set and read")
+    void testFields() {
+        Authorization auth = new Authorization();
+        auth.setName("X-Authorization");
+        auth.setType(AuthorizationTypeEnum.BASICAUTH);
+        auth.setKeyName("token");
+        auth.setAuthRegex("^.*$");
+        assertThat(auth.getName()).isEqualTo("X-Authorization");
+        assertThat(auth.getType()).isEqualTo(AuthorizationTypeEnum.BASICAUTH);
+        assertThat(auth.getKeyName()).isEqualTo("token");
+        assertThat(auth.getAuthRegex()).isEqualTo("^.*$");
+    }
 }

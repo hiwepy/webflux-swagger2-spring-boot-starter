@@ -30,9 +30,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 class AuthorizationTypeEnumTest {
 
     @Test
-    @DisplayName("Instance can be created via constructor")
-    void testInstantiation() {
-        AuthorizationTypeEnum instance = new AuthorizationTypeEnum();
-        assertThat(instance).isNotNull();
+    @DisplayName("Enum values exist")
+    void testEnumValues() {
+        AuthorizationTypeEnum[] values = AuthorizationTypeEnum.values();
+        assertThat(values).isNotEmpty();
+    }
+
+    @Test
+    @DisplayName("APIKEY value exists")
+    void testApiKeyValue() {
+        AuthorizationTypeEnum value = AuthorizationTypeEnum.valueOf("APIKEY");
+        assertThat(value).isNotNull();
+    }
+
+    @Test
+    @DisplayName("BASICAUTH value exists")
+    void testBasicAuthValue() {
+        AuthorizationTypeEnum value = AuthorizationTypeEnum.valueOf("BASICAUTH");
+        assertThat(value).isNotNull();
     }
 }
