@@ -70,7 +70,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * 参考https://my.oschina.net/go4it/blog/3035218
  * 部分代码来来自：https://github.com/SpringForAll/spring-boot-starter-swagger
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @Configuration
 @ConditionalOnProperty(prefix = Swagger2WebFluxProperties.PREFIX, value = "enabled", havingValue = "true")
