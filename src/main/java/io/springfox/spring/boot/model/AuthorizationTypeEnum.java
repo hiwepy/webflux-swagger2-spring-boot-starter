@@ -20,6 +20,7 @@ import java.util.NoSuchElementException;
 /**
  * 鉴权策略，可选 ApiKey | BasicAuth | None，默认ApiKey
  * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public enum AuthorizationTypeEnum {
 
@@ -31,18 +32,41 @@ public enum AuthorizationTypeEnum {
 		this.type = type;
 	}
 
+	/**
+	 * Returns the .
+	 *
+	 * @return the 
+	 */
 	public String get() {
 		return type;
 	}
 	
+	/**
+	 * equals.
+	 *
+	 * @param type the type
+	 * @return the result
+	 */
 	public boolean equals(AuthorizationTypeEnum type){
 		return this.compareTo(type) == 0;
 	}
 	
+	/**
+	 * equals.
+	 *
+	 * @param type the type
+	 * @return the result
+	 */
 	public boolean equals(String type){
 		return this.compareTo(AuthorizationTypeEnum.valueOfIgnoreCase(type)) == 0;
 	}
 	
+	/**
+	 * value Of Ignore Case.
+	 *
+	 * @param type the type
+	 * @return the result
+	 */
 	public static AuthorizationTypeEnum valueOfIgnoreCase(String type) {
 		for (AuthorizationTypeEnum transport : AuthorizationTypeEnum.values()) {
 			if(transport.get().equalsIgnoreCase(type)) {

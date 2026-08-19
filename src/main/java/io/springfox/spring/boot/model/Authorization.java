@@ -19,6 +19,8 @@ import lombok.Data;
 
 /**
  * securitySchemes 支持方式之一 ApiKey
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 @Data
 public class Authorization {
@@ -43,34 +45,74 @@ public class Authorization {
 	 */
 	private String authRegex = "^.*$";
 
+	/**
+	 * Returns the name.
+	 *
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Returns the type.
+	 *
+	 * @return the type
+	 */
 	public AuthorizationTypeEnum getType() {
 		return type;
 	}
 
+	/**
+	 * Sets the type.
+	 *
+	 * @param type the type
+	 */
 	public void setType(AuthorizationTypeEnum type) {
 		this.type = type;
 	}
 
+	/**
+	 * Returns the key name.
+	 *
+	 * @return the key name
+	 */
 	public String getKeyName() {
 		return keyName;
 	}
 
+	/**
+	 * Sets the key name.
+	 *
+	 * @param keyName the key name
+	 */
 	public void setKeyName(String keyName) {
 		this.keyName = keyName;
 	}
 
+	/**
+	 * Returns the auth regex.
+	 *
+	 * @return the auth regex
+	 */
 	public String getAuthRegex() {
 		return authRegex;
 	}
 
+	/**
+	 * Sets the auth regex.
+	 *
+	 * @param authRegex the auth regex
+	 */
 	public void setAuthRegex(String authRegex) {
 		this.authRegex = authRegex;
 	}

@@ -71,6 +71,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * 参考https://my.oschina.net/go4it/blog/3035218
  * 部分代码来来自：https://github.com/SpringForAll/spring-boot-starter-swagger
  * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 @Configuration
 @ConditionalOnProperty(prefix = Swagger2WebFluxProperties.PREFIX, value = "enabled", havingValue = "true")
@@ -82,11 +83,22 @@ public class Swagger2WebFluxAutoConfiguration implements BeanFactoryAware {
 	private BeanFactory beanFactory;
 	
 	@Bean
+	/**
+	 * swagger2 Ui Web Flux Configurer.
+	 *
+	 * @return the result
+	 */
 	public Swagger2UiWebFluxConfigurer swagger2UiWebFluxConfigurer() {
 		return new Swagger2UiWebFluxConfigurer();
 	}
 
 	@Bean
+	/**
+	 * ui Configuration.
+	 *
+	 * @param swaggerProperties the swagger properties
+	 * @return the result
+	 */
 	public UiConfiguration uiConfiguration(Swagger2WebFluxProperties swaggerProperties) {
 		return UiConfigurationBuilder.builder()
 				.deepLinking(swaggerProperties.getUiConfig().getDeepLinking())
@@ -108,6 +120,12 @@ public class Swagger2WebFluxAutoConfiguration implements BeanFactoryAware {
 	@ConditionalOnMissingBean
 	@ConditionalOnBean(UiConfiguration.class)
 	@ConditionalOnProperty(prefix = Swagger2WebFluxProperties.PREFIX, name = "enabled", matchIfMissing = true)
+	/**
+	 * create Rest API.
+	 *
+	 * @param swaggerProperties the swagger properties
+	 * @return the result
+	 */
 	public List<Docket> createRestApi(Swagger2WebFluxProperties swaggerProperties) {
 		ConfigurableBeanFactory configurableBeanFactory = (ConfigurableBeanFactory) beanFactory;
 		List<Docket> docketList = new LinkedList<>();
@@ -373,6 +391,12 @@ public class Swagger2WebFluxAutoConfiguration implements BeanFactoryAware {
 	}
 
 	@Override
+	/**
+	 * Sets the bean factory.
+	 *
+	 * @param beanFactory the bean factory
+	 * @throws BeansException if an error occurs
+	 */
 	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
 		this.beanFactory = beanFactory;
 	}

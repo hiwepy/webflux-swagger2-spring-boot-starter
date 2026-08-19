@@ -17,6 +17,12 @@ package io.springfox.spring.boot.model;
 
 import lombok.Data;
 
+/**
+ * <p>Global Response Message Body.</p>
+ *
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 @Data
 public class GlobalResponseMessageBody {
 
@@ -35,26 +41,56 @@ public class GlobalResponseMessageBody {
 	 **/
 	private String modelRef;
 
+	/**
+	 * Returns the code.
+	 *
+	 * @return the code
+	 */
 	public String getCode() {
 		return code;
 	}
 
+	/**
+	 * Sets the code.
+	 *
+	 * @param code the code
+	 */
 	public void setCode(String code) {
 		this.code = code;
 	}
 
+	/**
+	 * Returns the message.
+	 *
+	 * @return the message
+	 */
 	public String getMessage() {
 		return message;
 	}
 
+	/**
+	 * Sets the message.
+	 *
+	 * @param message the message
+	 */
 	public void setMessage(String message) {
 		this.message = message;
 	}
 
+	/**
+	 * Returns the model ref.
+	 *
+	 * @return the model ref
+	 */
 	public String getModelRef() {
 		return modelRef;
 	}
 
+	/**
+	 * Sets the model ref.
+	 *
+	 * @param modelRef the model ref
+	 */
 	public void setModelRef(String modelRef) {
 		this.modelRef = modelRef;
 	}
